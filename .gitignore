@@ -1,0 +1,8 @@
+*~
+*.swp
+*.deb
+/.bundle
+/bin
+/download
+/destroot
+/pkgroot

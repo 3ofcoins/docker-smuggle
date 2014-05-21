@@ -1,0 +1,9 @@
+#!/bin/sh
+set -e
+if [ $# -eq 0 ] ; then
+	echo "Usage: $0 CONTAINER [COMMAND ARGS ...]" >&2
+	exit
+fi
+pid=$(docker inspect -f {{.State.Pid}} "$1")
+shift
+exec nsenter -m -u -i -n -p -t $pid -- "${@}"
