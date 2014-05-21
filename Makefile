@@ -1,6 +1,7 @@
 UTIL_LINUX_VERSION=2.24.2
 PKG_REVISION=1
 PKG_ARCH=$(shell dpkg-architecture -qDEB_HOST_ARCH)
+BUILD_IMAGE ?= ubuntu:12.04
 
 UTIL_LINUX_TARBALL=download/util-linux-$(UTIL_LINUX_VERSION).tar.gz
 PKG_FILE=docker-smuggle_$(UTIL_LINUX_VERSION)-$(PKG_REVISION)_$(PKG_ARCH).deb
@@ -26,7 +27,7 @@ $(UTIL_LINUX_TARBALL):
 	wget -O "$@" "https://www.kernel.org/pub/linux/utils/util-linux/v$(shell echo $(UTIL_LINUX_VERSION) | grep -o '^[1-9][0-9]*\.[1-9][0-9]*')/util-linux-$(UTIL_LINUX_VERSION).tar.gz"
 
 destroot/bin/nsenter: $(UTIL_LINUX_TARBALL) compile.sh docker-smuggle
-	docker run --volume=`pwd`:/work --workdir=/work --rm ubuntu:12.04 ./compile.sh $(UTIL_LINUX_TARBALL)
+	docker run --volume=`pwd`:/work --workdir=/work --rm $(BUILD_IMAGE) ./compile.sh $(UTIL_LINUX_TARBALL)
 
 clean:
-	rm -rf download destroot bin pkgroot
+	rm -rf download destroot bin
