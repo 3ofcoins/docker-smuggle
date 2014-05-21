@@ -13,12 +13,12 @@ If no command is given, a shell is started.
 Installation
 ------------
 
-If have a reasonably recent util-linux that includes an `nsenter`
-command, you're lucky! Just copy `docker-smuggle` somewhere into your
-`$PATH` (such as `/usr/local/bin/`) and you're good to go.
+If your system has a reasonably recent util-linux that includes an
+`nsenter` command, you're lucky! Just copy `docker-smuggle` somewhere
+into your `$PATH` (such as `/usr/local/bin/`) and you're good to go.
 
-If you're on a system that ships with old util-linux, and this system
-is Ubuntu, run `make` to build a deb package with nsenter and
+If you're on a system that ships old util-linux, and this system is
+Ubuntu, run `make` to build a deb package with nsenter and
 docker-smuggle.
 
 Build needs Docker, wget, and Ruby with Bundler. By default the
